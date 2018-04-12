@@ -6,6 +6,8 @@
 
 * [The Problem](#the-problem)
 * [A Potential Solution](#a-potential-solution)
+  * [Overview](#overview)
+  * [Details](#details)
 
 <!-- vim-markdown-toc -->
 
@@ -31,6 +33,8 @@ on this for more details.
 
 ## A Potential Solution
 
+### Overview
+
 * Detonate untrusted package/code in a container
 * Collect all syscall activities (e.g. read, write, network connections ...etc)
   inside the container
@@ -38,3 +42,11 @@ on this for more details.
 * Ultimately, production software running inside containers can be limited to
   only perform what it is allowed to perform via `seccomp`, `apparmor`, or
   SE-Linux profiles
+
+### Details
+
+1.  Build docker image:
+    `docker build -t node-tracer:latest -f Dockerfile.node .`
+1.  Run docker container:
+    `docker run --rm -v $PWD/strace:/strace node-tracer:latest -f -o node-tracer.strace npm install -g petermbenjamin`
+1.  Examine content of strace file

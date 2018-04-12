@@ -1,4 +1,4 @@
-# strace-poc
+# Mitigating Malicious Packages
 
 ## Table of Contents
 
